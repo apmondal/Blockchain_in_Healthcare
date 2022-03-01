@@ -1,8 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-
+import DoctorRegistration from './screens/registration-screen/HospitalRegistration';
 function App() {
-  return <div>BlockChain in HealthCare</div>;
+  return (
+    <div>
+      <DoctorRegistration />
+    </div>
+  );
 }
 
 export default App;
