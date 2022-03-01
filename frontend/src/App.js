@@ -1,9 +1,9 @@
 import './App.css';
-import DoctorRegistration from './screens/registration-screen/HospitalRegistration';
+import HospitalRegistrationForm from './components/HospitalRegistration';
 function App() {
   return (
     <div>
-      <DoctorRegistration />
+      <HospitalRegistrationForm />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useContext } from 'react';
-import { HospitalContext } from '../../context/HospitalsContext';
+import { HospitalContext } from '../context/HospitalsContext';
 
 const HospitalRegistrationForm = () => {
   const {
