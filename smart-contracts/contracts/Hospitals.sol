@@ -7,21 +7,30 @@ contract Hospitals {
     event Registered(address hospitalAddress, string name);
 
     struct Hospital {
+        uint256 id;
         address hospitalAddress;
         string name;
         uint256 timestamp;
     }
 
     Hospital[] hospitals;
+    mapping(uint256 => Hospital) public hospitalsMap;
 
-    function addToBlockChain(string memory name) public {
+    // mapping(address => mapping(address => Doctor)) doctorsMap;
+
+    function addToBlockChain(uint256 id, string memory name) public {
         numOfHospitals += 1;
-        hospitals.push(Hospital(msg.sender, name, block.timestamp));
+        hospitalsMap[id] = Hospital(id, msg.sender, name, block.timestamp);
+        hospitals.push(Hospital(id, msg.sender, name, block.timestamp));
         emit Registered(msg.sender, name);
     }
 
     function getAllHospitals() public view returns (Hospital[] memory) {
         return hospitals;
+    }
+
+    function getHospitalById(uint256 id) public view returns (Hospital memory) {
+        return hospitalsMap[id];
     }
 
     function getHospitalCount() public view returns (uint256) {

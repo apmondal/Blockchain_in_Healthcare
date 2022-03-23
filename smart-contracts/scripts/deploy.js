@@ -1,20 +1,23 @@
-const hre = require('hardhat');
+const hardHat = require("hardhat");
 
-async function main() {
-  const Hospitals = await hre.ethers.getContractFactory('Hospitals');
-  const hospitals = await Hospitals.deploy();
+async function deployContract(contract) {
+  const Contract = await hardHat.ethers.getContractFactory(contract);
+  const c = await Contract.deploy();
 
-  await hospitals.deployed();
+  await c.deployed();
 
-  console.log('Hospitals deployed to:', hospitals.address);
+  console.log(`${contract} deployed to:`, c.address);
 }
 
-// main()
-//   .then(() => process.exit(0))
-//   .catch((error) => {
-//     console.error(error);
-//     process.exit(1);
-//   });
+async function deployAllContracts(contracts) {
+  contracts.forEach(async (contract) => {
+    await deployContract(contract);
+  });
+}
+const contracts = ["Hospitals", "Doctors", "Patient"];
+async function main() {
+  await deployAllContracts(contracts);
+}
 
 async function run() {
   try {
@@ -25,5 +28,4 @@ async function run() {
     process.exit(1);
   }
 }
-
 run();
