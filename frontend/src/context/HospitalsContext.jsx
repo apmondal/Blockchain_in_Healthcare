@@ -20,7 +20,7 @@ const getEthereumContract = () => {
 
 export const HospitalsProvider = ({ children }) => {
   const [connectedAccount, setConnectedAccount] = useState('');
-  const [formData, setFormData] = useState({ name: '' });
+  const [formData, setFormData] = useState({ name: '', id: '' });
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -60,8 +60,9 @@ export const HospitalsProvider = ({ children }) => {
   const addHospital = async () => {
     try {
       if (!ethereum) alert('Please Install Metamask');
-      const { name } = formData;
-      getEthereumContract();
+      const { name, id } = formData;
+      const hospitalContract = getEthereumContract();
+      hospitalContract.functions.addToBlockChain(id, name);
     } catch (error) {
       console.error(error);
       throw new Error('No ethereum object');
