@@ -8,6 +8,9 @@ import { Box } from '@mui/system';
 import HospitalPage from './screens/hospital/HospitalPage';
 import HospitalLogIn from './components/HospitalLogIn';
 import Header from './components/Header';
+import Hospital from './screens/hospital/Hospital';
+import Doctors from './components/Doctors';
+import Patients from './components/Patients';
 function RenderForm() {
   const { connectWallet, connectedAccount } = useContext(HospitalContext);
   return (
@@ -45,7 +48,10 @@ function App() {
         <Route path="/" element={<RenderForm />}></Route>
         <Route path="/login" element={<HospitalLogIn />}></Route>
         <Route path="/register" element={<HospitalRegistrationForm />}></Route>
-        <Route path="/hospital" element={<HospitalPage />}></Route>
+        <Route path="/hospital" element={<Hospital />}>
+          <Route path="/hospital/doctors" element={<Doctors />}></Route>
+          <Route path="/hospital/patients" element={<Patients />}></Route>
+        </Route>
       </Routes>
     </>
   );
