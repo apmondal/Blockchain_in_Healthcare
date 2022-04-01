@@ -20,7 +20,12 @@ const getEthereumContract = () => {
 
 export const HospitalsProvider = ({ children }) => {
   const [connectedAccount, setConnectedAccount] = useState('');
-  const [formData, setFormData] = useState({ name: '', id: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    id: '',
+    password: '',
+    email: '',
+  });
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
