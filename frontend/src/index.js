@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HospitalsProvider } from './context/HospitalsContext';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HospitalsProvider>
-      <App />
-    </HospitalsProvider>
+    <BrowserRouter>
+      <HospitalsProvider>
+        <App />
+      </HospitalsProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
