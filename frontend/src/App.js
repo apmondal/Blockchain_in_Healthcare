@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/system';
 import HospitalPage from './screens/hospital/HospitalPage';
 import HospitalLogIn from './components/HospitalLogIn';
+import Header from './components/Header';
 function RenderForm() {
   const { connectWallet, connectedAccount } = useContext(HospitalContext);
   return (
@@ -38,12 +39,15 @@ function RenderForm() {
 }
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<RenderForm />}></Route>
-      <Route path="/login" element={<HospitalLogIn />}></Route>
-      <Route path="/register" element={<HospitalRegistrationForm />}></Route>
-      <Route path="/hospital" element={<HospitalPage />}></Route>
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<RenderForm />}></Route>
+        <Route path="/login" element={<HospitalLogIn />}></Route>
+        <Route path="/register" element={<HospitalRegistrationForm />}></Route>
+        <Route path="/hospital" element={<HospitalPage />}></Route>
+      </Routes>
+    </>
   );
 }
 

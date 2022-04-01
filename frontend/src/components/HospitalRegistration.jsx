@@ -24,7 +24,7 @@ const HospitalRegistrationForm = () => {
       sx={{
         display: 'flex',
         width: '100vw',
-        height: '100vh',
+        height: 'calc(100vh - 64px)',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',

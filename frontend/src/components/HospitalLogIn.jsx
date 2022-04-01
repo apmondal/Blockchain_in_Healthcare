@@ -8,22 +8,22 @@ import {
 } from '@mui/material';
 import { useContext } from 'react';
 import { HospitalContext } from '../context/HospitalsContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HospitalLogIn = () => {
   const { formData, handleChange, addHospital } = useContext(HospitalContext);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.id) return;
 
-    addHospital();
+    navigate('/hospital');
   };
   return (
     <Box
       sx={{
         display: 'flex',
         width: '100vw',
-        height: '100vh',
+        height: 'calc(100vh - 64px)',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
