@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -10,8 +10,7 @@ import { useContext } from 'react';
 import { HospitalContext } from '../context/HospitalsContext';
 import { Link } from 'react-router-dom';
 
-const HospitalRegistrationForm = () => {
-  const [confirmPassword, setConfirmPassword] = useState('');
+const HospitalLogIn = () => {
   const { formData, handleChange, addHospital } = useContext(HospitalContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const HospitalRegistrationForm = () => {
       }}
     >
       <Typography variant="h5" fontWeight="bold">
-        Enter hospital details to register
+        Enter hospital details to log in{' '}
       </Typography>
       <Box
         component="form"
@@ -49,23 +48,6 @@ const HospitalRegistrationForm = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <TextField
-          value={formData.name}
-          onChange={handleChange}
-          name="name"
-          label="Name"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
-          type="text"
-          value={formData.id}
-          onChange={handleChange}
-          name="id"
-          label="Hospital Id"
-          variant="outlined"
-          fullWidth
-        />
         <TextField
           type="email"
           value={formData.email}
@@ -84,31 +66,21 @@ const HospitalRegistrationForm = () => {
           variant="outlined"
           fullWidth
         />
-        <TextField
-          type="password"
-          value={confirmPassword}
-          onChange={(event) => {
-            setConfirmPassword(event.target.value);
-          }}
-          name="password"
-          label="Confirm Password"
-          variant="outlined"
-          fullWidth
-        />
+
         <Button type="submit" variant="contained" color="primary" fullWidth>
-          Register
+          Login
         </Button>
         <MUILink
           component={Link}
-          to="/login"
+          to="/register"
           underline="hover"
           color="InfoText"
         >
-          Already have an account? Log in!!{' '}
+          Don't have an account? Register!!{' '}
         </MUILink>
       </Box>
     </Box>
   );
 };
 
-export default HospitalRegistrationForm;
+export default HospitalLogIn;
