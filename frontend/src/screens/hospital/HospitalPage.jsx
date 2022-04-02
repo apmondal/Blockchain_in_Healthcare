@@ -1,7 +1,12 @@
 import { Button, Divider, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Paper } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+
 import React from 'react';
 import ListComponent from '../../components/List';
+import { useNavigate } from 'react-router-dom';
 const listItems = [
   { name: 'Shreejeeb Kesh1', id: 1, description: 'lorem ipsum' },
   { name: 'Shreejeeb Kesh2', id: 2, description: 'lorem ipsum' },
@@ -10,19 +15,91 @@ const listItems = [
   { name: 'Shreejeeb Kesh6', id: 5, description: 'lorem ipsum' },
   { name: 'Shreejeeb Kesh7', id: 6, description: 'lorem ipsum' },
 ];
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
 const HospitalPage = () => {
+  const navigate = useNavigate();
   return (
     <div>
-      <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', mt: 2 }}>
-        <Button variant="contained" color="secondary">
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          justifyContent: 'flex-end',
+          mt: 2,
+          mr: 2,
+        }}
+      >
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          onClick={() => navigate('/hospital/add-doctor')}
+        >
           Add Doctor
         </Button>
-        <Button variant="contained" color="secondary">
-          Add Patient
-        </Button>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', mx: 20, my: 4 }}>
-        <Typography variant="h5">Available Doctors</Typography>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', mx: 20, my: 4, px: 4 }}
+        component={Paper}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Typography variant="h5">Available Doctors</Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+        </Box>
         <Divider />
         <ListComponent listItems={listItems} />
       </Box>

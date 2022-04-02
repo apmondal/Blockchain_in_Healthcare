@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
   Link as MUILink,
+  Paper,
 } from '@mui/material';
 import { useContext } from 'react';
 import { HospitalContext } from '../context/HospitalsContext';
@@ -26,87 +27,88 @@ const HospitalRegistrationForm = () => {
         width: '100vw',
         height: 'calc(100vh - 64px)',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'aliceblue',
       }}
     >
-      <Typography variant="h5" fontWeight="bold">
-        Enter hospital details to register
-      </Typography>
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 2,
-          padding: 2,
-          width: 300,
-          height: 300,
-        }}
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          value={formData.name}
-          onChange={handleChange}
-          name="name"
-          label="Name"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
-          type="text"
-          value={formData.id}
-          onChange={handleChange}
-          name="id"
-          label="Hospital Id"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          name="email"
-          label="Email"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-          name="password"
-          label="Password"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
-          type="password"
-          value={confirmPassword}
-          onChange={(event) => {
-            setConfirmPassword(event.target.value);
+      <Paper sx={{ marginTop: 6 }}>
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            padding: 2,
+            width: 400,
+            minHeight: 300,
           }}
-          name="password"
-          label="Confirm Password"
-          variant="outlined"
-          fullWidth
-        />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Register
-        </Button>
-        <MUILink
-          component={Link}
-          to="/login"
-          underline="hover"
-          color="InfoText"
+          onSubmit={handleSubmit}
         >
-          Already have an account? Log in!!{' '}
-        </MUILink>
-      </Box>
+          <Typography variant="h5" fontWeight="bold" textAlign="center">
+            Enter hospital details to register
+          </Typography>
+          <TextField
+            value={formData.name}
+            onChange={handleChange}
+            name="name"
+            label="Name"
+            variant="outlined"
+            fullWidth
+          />
+          <TextField
+            type="text"
+            value={formData.id}
+            onChange={handleChange}
+            name="id"
+            label="Hospital Id"
+            variant="outlined"
+            fullWidth
+          />
+          <TextField
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            name="email"
+            label="Email"
+            variant="outlined"
+            fullWidth
+          />
+          <TextField
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            name="password"
+            label="Password"
+            variant="outlined"
+            fullWidth
+          />
+          <TextField
+            type="password"
+            value={confirmPassword}
+            onChange={(event) => {
+              setConfirmPassword(event.target.value);
+            }}
+            name="password"
+            label="Confirm Password"
+            variant="outlined"
+            fullWidth
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Register
+          </Button>
+          <MUILink
+            component={Link}
+            to="/login"
+            underline="hover"
+            color="InfoText"
+          >
+            Already have an account? Log in!!{' '}
+          </MUILink>
+        </Box>
+      </Paper>
     </Box>
   );
 };

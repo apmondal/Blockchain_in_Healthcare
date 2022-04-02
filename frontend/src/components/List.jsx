@@ -12,8 +12,16 @@ export default function ListComponent({ listItems }) {
   return (
     <List sx={{ width: '100%', maxWidth: 450, bgcolor: 'background.paper' }}>
       {listItems.length &&
-        listItems.map((listItem) => (
-          <Box key={listItem.id}>
+        listItems.map((listItem, index) => (
+          <Box
+            key={listItem.id}
+            sx={{
+              cursor: 'pointer',
+              '&:hover': {
+                color: 'red',
+              },
+            }}
+          >
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt={listItem.name} src="/static/images/avatar/1.jpg" />
@@ -34,7 +42,9 @@ export default function ListComponent({ listItems }) {
                 }
               />
             </ListItem>
-            <Divider variant="inset" component="li" />
+            {index !== listItems.length - 1 && (
+              <Divider variant="inset" component="li" />
+            )}
           </Box>
         ))}
     </List>
