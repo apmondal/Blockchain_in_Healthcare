@@ -5,12 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HospitalsProvider } from './context/HospitalsContext';
 import { BrowserRouter } from 'react-router-dom';
+import { DoctorProvider } from './context/DoctorContext';
+import { PatientProvider } from './context/PatientContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <HospitalsProvider>
-        <App />
+        <DoctorProvider>
+          <PatientProvider>
+            <App />
+          </PatientProvider>
+        </DoctorProvider>
       </HospitalsProvider>
     </BrowserRouter>
   </React.StrictMode>,
