@@ -1,15 +1,22 @@
 import React from 'react';
-import { Box, Button, Paper, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useContext } from 'react';
 import { DoctorContext } from '../context/DoctorContext';
 import { useNavigate } from 'react-router-dom';
-
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 const DoctorForm = () => {
-  const { formData, handleChange } = useContext(DoctorContext);
+  const { formData, handleChange, addDoctor } = useContext(DoctorContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    addDoctor();
     goToDoctorsPage();
   };
   const goToDoctorsPage = () => {
@@ -26,14 +33,16 @@ const DoctorForm = () => {
         backgroundColor: 'aliceblue',
       }}
     >
-      <Button
+      <IconButton
         onClick={goToDoctorsPage}
         variant="text"
         color="primary"
-        sx={{ position: 'absolute', top: 70, left: 5 }}
+        sx={{ position: 'absolute', top: 70, left: 15 }}
+        size="small"
       >
+        <ArrowBackIosNewRoundedIcon fontSize="16px" />
         Back
-      </Button>
+      </IconButton>
       <Paper sx={{ marginTop: 6 }}>
         <Box
           component="form"

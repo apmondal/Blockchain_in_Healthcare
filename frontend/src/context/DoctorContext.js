@@ -20,7 +20,16 @@ export const DoctorProvider = ({ children }) => {
   };
 
   const addDoctor = async () => {
-    alert(formData);
+    console.log('====================================');
+    console.log(formData);
+    console.log('====================================');
+    const doctorsList = JSON.parse(localStorage.getItem('doctorsList'));
+    if (!doctorsList) {
+      localStorage.setItem('doctorsList', JSON.stringify([formData]));
+    }
+
+    doctorsList.push(formData);
+    localStorage.setItem('doctorsList', JSON.stringify(doctorsList));
   };
 
   return (

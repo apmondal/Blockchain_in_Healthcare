@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
 import React, { useEffect } from 'react';
-import ListComponent from '../../components/List';
+import ListComponent from './List';
 import { useNavigate } from 'react-router-dom';
 const listItems = [
   { name: 'Shreejeeb Kesh1', id: 1, description: 'lorem ipsum' },
@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const HospitalPage = () => {
+const Doctors = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -118,4 +118,4 @@ const HospitalPage = () => {
   );
 };
 
-export default HospitalPage;
+export default Doctors;
