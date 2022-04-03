@@ -1,14 +1,21 @@
 import { Box, Button, SvgIcon, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as HospitalSvg } from '../../assets/hospital.svg';
 
 const Hospital = () => {
   const navigate = useNavigate();
+  const [hospital, setHospital] = useState(null);
 
-  const goTo = (path) => {
-    navigate(path);
-  };
+  useEffect(() => {
+    const HOSPITAL = JSON.parse(localStorage.getItem('hospital'));
+    if (!HOSPITAL) {
+      navigate('/register');
+    }
+
+    setHospital(HOSPITAL);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -16,9 +23,10 @@ const Hospital = () => {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 5,
+        gap: 5,
       }}
     >
-      <Box sx={{ width: '50%', marginTop: 4 }}>
+      <Box sx={{ width: '500px', marginTop: 4, marginRight: 10 }}>
         <HospitalSvg width="100%" height="100%" />
       </Box>
       <Box
@@ -29,35 +37,49 @@ const Hospital = () => {
         }}
       >
         <Typography variant="h3" color="darkblue" textAlign="center">
-          Welcome to Hospital Name
+          {hospital && hospital.name
+            ? hospital.name
+            : 'Welcome to Hospital Name'}
         </Typography>
+        <Box sx={{ mt: '15px', mb: '5px' }}>
+          <Button
+            variant="contained"
+            color="info"
+            size="large"
+            onClick={() => {
+              navigate('/hospital/details');
+            }}
+            fullWidth
+          >
+            View Details
+          </Button>
+        </Box>
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            gap: 2,
-            marginTop: 2,
+            gap: '8px',
           }}
         >
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             size="large"
             onClick={() => {
               navigate('/hospital/doctors');
             }}
           >
-            Doctors
+            View Doctors
           </Button>
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             size="large"
             onClick={() => {
               navigate('/hospital/patients');
             }}
           >
-            Patients
+            View Patients
           </Button>
         </Box>
       </Box>

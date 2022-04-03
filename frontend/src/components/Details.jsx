@@ -4,12 +4,21 @@ import React from 'react';
 import BackButton from './BackButton';
 
 const Details = ({ details }) => {
+  if (!details) {
+    return (
+      <>
+        <Typography variant="h1" color="teal" textAlign="center">
+          Sorry!!No Data Found.
+        </Typography>
+      </>
+    );
+  }
   return (
     <>
       <BackButton />
       <Paper sx={{ mx: 20, mt: 10, padding: 4 }}>
         {Object.keys(details).map((attr) => {
-          if (attr && details[attr].length)
+          if (attr && attr !== 'password' && details[attr].length)
             return (
               <Box key={attr} sx={{ display: 'flex', width: '100%' }}>
                 {attr === 'name' ? (

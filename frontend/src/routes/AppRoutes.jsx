@@ -12,6 +12,7 @@ import HospitalRegistrationForm from '../components/HospitalRegistration';
 import { RenderForm } from '../App';
 import Doctor from '../components/Doctor';
 import Patient from '../components/Patient';
+import HospitalDetails from '../components/HospitalDetails';
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<HospitalRegistrationForm />}></Route>
         <Route path="/hospital" element={<Hospital />}></Route>
         <Route path="/hospital/doctors" element={<Doctors />}></Route>
+        <Route path="/hospital/details" element={<HospitalDetails />}></Route>
         <Route path="/hospital/patients" element={<Patients />}></Route>
         <Route path="/hospital/add-doctor" element={<DoctorForm />}></Route>
         <Route path="/hospital/add-patient" element={<PatientForm />}></Route>

@@ -15,7 +15,6 @@ import { useFormik } from 'formik';
 const validationSchema = yup.object({
   name: yup.string('Enter your Name').required('Name is required'),
   id: yup.string('Enter your id').required('id is required'),
-  address: yup.string('Enter your address').required('address is required'),
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
@@ -41,6 +40,7 @@ const HospitalRegistrationForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values);
+      addHospital(values);
       navigate('/hospital');
     },
   });

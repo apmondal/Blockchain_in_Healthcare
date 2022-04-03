@@ -62,16 +62,17 @@ export const HospitalsProvider = ({ children }) => {
     }
   };
 
-  const addHospital = async () => {
-    try {
-      if (!ethereum) alert('Please Install Metamask');
-      const { name, id } = formData;
-      const hospitalContract = getEthereumContract();
-      hospitalContract.functions.addToBlockChain(id, name);
-    } catch (error) {
-      console.error(error);
-      throw new Error('No ethereum object');
-    }
+  const addHospital = (values) => {
+    // try {
+    //   if (!ethereum) alert('Please Install Metamask');
+    //   const { name, id } = formData;
+    //   const hospitalContract = getEthereumContract();
+    //   hospitalContract.functions.addToBlockChain(id, name);
+    // } catch (error) {
+    //   console.error(error);
+    //   throw new Error('No ethereum object');
+    // }
+    localStorage.setItem('hospital', JSON.stringify(values));
   };
   useEffect(() => {
     checkIfWalletIsConnected();

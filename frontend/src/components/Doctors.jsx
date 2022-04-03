@@ -8,6 +8,7 @@ import React, { useContext, useEffect } from 'react';
 import ListComponent from './List';
 import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
+import BackButton from './BackButton';
 const listItems = [
   { name: 'Shreejeeb Kesh1', id: '1', specification: 'lorem ipsum' },
   { name: 'Shreejeeb Kesh2', id: '2', specification: 'lorem ipsum' },
@@ -71,6 +72,7 @@ const Doctors = () => {
   }, []);
   return (
     <div>
+      <BackButton />
       <Box
         sx={{
           display: 'flex',
