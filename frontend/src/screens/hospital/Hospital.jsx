@@ -11,7 +11,12 @@ const Hospital = () => {
   };
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 5,
+      }}
     >
       <Box sx={{ width: '50%', marginTop: 4 }}>
         <HospitalSvg width="100%" height="100%" />
@@ -23,7 +28,7 @@ const Hospital = () => {
           flexDirection: 'column',
         }}
       >
-        <Typography variant="h1" color="darkblue" textAlign="center">
+        <Typography variant="h3" color="darkblue" textAlign="center">
           Welcome to Hospital Name
         </Typography>
         <Box

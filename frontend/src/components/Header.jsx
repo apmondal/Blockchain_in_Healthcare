@@ -81,7 +81,7 @@ export default function Header() {
             }}
             onClick={goToHome}
           >
-            Health
+            HealthCare
           </Typography>
           <Search>
             <SearchIconWrapper>

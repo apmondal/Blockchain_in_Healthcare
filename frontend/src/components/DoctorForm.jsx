@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as DoctorSvg } from '../assets/doctor.svg';
 import BackButton from './BackButton';
 const DoctorForm = () => {
-  const { formData, handleChange, addDoctor } = useContext(DoctorContext);
+  const { formData, handleChange, addDoctor, formDataError } =
+    useContext(DoctorContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,6 +55,9 @@ const DoctorForm = () => {
               Enter details to add new Doctor
             </Typography>
             <TextField
+              required
+              error={formDataError.name}
+              helperText="This is a required field"
               type="text"
               value={formData.name}
               onChange={handleChange}
@@ -63,6 +67,7 @@ const DoctorForm = () => {
               fullWidth
             />
             <TextField
+              required
               type="text"
               value={formData.id}
               onChange={handleChange}
@@ -72,6 +77,7 @@ const DoctorForm = () => {
               fullWidth
             />
             <TextField
+              required
               type="text"
               value={formData.specification}
               onChange={handleChange}
@@ -81,6 +87,7 @@ const DoctorForm = () => {
               fullWidth
             />
             <TextField
+              required
               type="email"
               value={formData.email}
               onChange={handleChange}
@@ -90,6 +97,7 @@ const DoctorForm = () => {
               fullWidth
             />
             <TextField
+              required
               type="text"
               value={formData.address}
               onChange={handleChange}

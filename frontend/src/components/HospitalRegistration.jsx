@@ -51,6 +51,7 @@ const HospitalRegistrationForm = () => {
             Enter hospital details to register
           </Typography>
           <TextField
+            required
             value={formData.name}
             onChange={handleChange}
             name="name"
@@ -59,6 +60,7 @@ const HospitalRegistrationForm = () => {
             fullWidth
           />
           <TextField
+            required
             type="text"
             value={formData.id}
             onChange={handleChange}
@@ -68,6 +70,7 @@ const HospitalRegistrationForm = () => {
             fullWidth
           />
           <TextField
+            required
             type="email"
             value={formData.email}
             onChange={handleChange}
@@ -77,6 +80,7 @@ const HospitalRegistrationForm = () => {
             fullWidth
           />
           <TextField
+            required
             type="password"
             value={formData.password}
             onChange={handleChange}
@@ -86,6 +90,7 @@ const HospitalRegistrationForm = () => {
             fullWidth
           />
           <TextField
+            required
             type="password"
             value={confirmPassword}
             onChange={(event) => {

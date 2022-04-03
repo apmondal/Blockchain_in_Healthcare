@@ -11,6 +11,17 @@ export const DoctorProvider = ({ children }) => {
     phoneNumber: '',
     address: '',
   });
+
+  const [formDataError, setFormDataError] = useState({
+    name: false,
+    id: false,
+    specification: false,
+    email: false,
+    phoneNumber: false,
+    address: false,
+  });
+
+  const [error, setError] = useState(false);
   const [doctorsList, setDoctorsList] = useState(null);
   const [searchKeyWord, setSearchKeyWord] = React.useState('');
   const handleDoctorList = (list) => {
@@ -27,6 +38,14 @@ export const DoctorProvider = ({ children }) => {
   };
 
   const addDoctor = async () => {
+    Object.keys(formData).forEach((dataKey) => {
+      if (formData[dataKey] === '') {
+        setFormDataError((prev) => ({ ...prev, [dataKey]: true }));
+        setError(true);
+      }
+    });
+
+    if (error) return;
     const doctorsList = JSON.parse(localStorage.getItem('doctorsList'));
     if (!doctorsList) {
       localStorage.setItem('doctorsList', JSON.stringify([formData]));
@@ -46,6 +65,8 @@ export const DoctorProvider = ({ children }) => {
         handleDoctorList,
         searchKeyWord,
         handleSearchKeyWord,
+        formDataError,
+        error,
       }}
     >
       {children}
