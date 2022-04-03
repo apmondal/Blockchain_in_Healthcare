@@ -8,14 +8,35 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
+import { DoctorContext } from '../context/DoctorContext';
 
 export default function ListComponent() {
-  const [listItems, setListItems] = React.useState(null);
+  const { doctorsList, handleDoctorList, searchKeyWord } =
+    React.useContext(DoctorContext);
   const navigate = useNavigate();
+
   React.useEffect(() => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
-    setListItems(list);
-  }, []);
+    if (searchKeyWord === '') handleDoctorList(list);
+    else {
+      if (list) {
+        const filteredList = list.filter(({ name, specification }) => {
+          return searchKeyWord.split('').reduce((prev, char) => {
+            return (
+              prev ||
+              name.indexOf(char) !== -1 ||
+              specification.indexOf(char) !== -1
+            );
+          }, false);
+        });
+
+        if (filteredList && filteredList.length) {
+          handleDoctorList(filteredList);
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchKeyWord]);
   return (
     <List
       sx={{
@@ -26,9 +47,9 @@ export default function ListComponent() {
         overflowY: 'scroll',
       }}
     >
-      {listItems &&
-        listItems.length &&
-        listItems.map((listItem, index) => {
+      {doctorsList &&
+        doctorsList.length &&
+        doctorsList.map((listItem, index) => {
           if (!listItem) return null;
           return (
             <Box
@@ -62,13 +83,13 @@ export default function ListComponent() {
                         variant="body2"
                         color="text.primary"
                       >
-                        {listItem.description}
+                        {listItem.specification}
                       </Typography>
                     </React.Fragment>
                   }
                 />
               </ListItem>
-              {index !== listItems.length - 1 && (
+              {index !== doctorsList.length - 1 && (
                 <Divider variant="inset" component="li" />
               )}
             </Box>

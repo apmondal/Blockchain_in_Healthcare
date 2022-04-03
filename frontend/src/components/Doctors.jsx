@@ -4,16 +4,17 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ListComponent from './List';
 import { useNavigate } from 'react-router-dom';
+import { DoctorContext } from '../context/DoctorContext';
 const listItems = [
-  { name: 'Shreejeeb Kesh1', id: 1, description: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh2', id: 2, description: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh3', id: 3, description: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh5', id: 4, description: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh6', id: 5, description: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh7', id: 6, description: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh1', id: 1, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh2', id: 2, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh3', id: 3, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh5', id: 4, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh6', id: 5, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh7', id: 6, specification: 'lorem ipsum' },
 ];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Doctors = () => {
   const navigate = useNavigate();
 
+  const { searchKeyWord, handleSearchKeyWord } = useContext(DoctorContext);
   useEffect(() => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
 
@@ -106,8 +108,11 @@ const Doctors = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              type="text"
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              value={searchKeyWord}
+              onChange={handleSearchKeyWord}
             />
           </Search>
         </Box>
