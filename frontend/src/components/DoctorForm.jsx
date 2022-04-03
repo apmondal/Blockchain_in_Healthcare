@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  Box,
-  Button,
-  IconButton,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Paper, TextField, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { DoctorContext } from '../context/DoctorContext';
 import { useNavigate } from 'react-router-dom';
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import { ReactComponent as DoctorSvg } from '../assets/doctor.svg';
+import BackButton from './BackButton';
 const DoctorForm = () => {
   const { formData, handleChange, addDoctor } = useContext(DoctorContext);
   const navigate = useNavigate();
@@ -27,6 +20,7 @@ const DoctorForm = () => {
     <Box
       sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
     >
+      <BackButton />
       <Box sx={{ width: '50%', marginLeft: 10 }}>
         <DoctorSvg width="100%" height="100%" />
       </Box>
@@ -40,16 +34,6 @@ const DoctorForm = () => {
           backgroundColor: 'aliceblue',
         }}
       >
-        <IconButton
-          onClick={goToDoctorsPage}
-          variant="text"
-          color="primary"
-          sx={{ position: 'absolute', top: 70, left: 15 }}
-          size="small"
-        >
-          <ArrowBackIosNewRoundedIcon fontSize="16px" />
-          Back
-        </IconButton>
         <Paper sx={{ marginTop: 6 }}>
           <Box
             component="form"
