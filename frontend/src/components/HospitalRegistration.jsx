@@ -9,8 +9,22 @@ import {
 } from '@mui/material';
 import { useContext } from 'react';
 import { HospitalContext } from '../context/HospitalsContext';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+const validationSchema = yup.object({
+  name: yup.string('Enter your Name').required('Name is required'),
+  id: yup.string('Enter your id').required('id is required'),
+  address: yup.string('Enter your address').required('address is required'),
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
 const HospitalRegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const { formData, handleChange, addHospital } = useContext(HospitalContext);
@@ -20,6 +34,16 @@ const HospitalRegistrationForm = () => {
 
     addHospital();
   };
+
+  const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: { ...formData },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      navigate('/hospital');
+    },
+  });
   return (
     <Box
       sx={{
@@ -45,15 +69,17 @@ const HospitalRegistrationForm = () => {
             width: 400,
             minHeight: 300,
           }}
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
         >
           <Typography variant="h5" fontWeight="bold" textAlign="center">
             Enter hospital details to register
           </Typography>
           <TextField
             required
-            value={formData.name}
-            onChange={handleChange}
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
             name="name"
             label="Name"
             variant="outlined"
@@ -62,8 +88,10 @@ const HospitalRegistrationForm = () => {
           <TextField
             required
             type="text"
-            value={formData.id}
-            onChange={handleChange}
+            value={formik.values.id}
+            onChange={formik.handleChange}
+            error={formik.touched.id && Boolean(formik.errors.id)}
+            helperText={formik.touched.id && formik.errors.id}
             name="id"
             label="Hospital Id"
             variant="outlined"
@@ -72,8 +100,10 @@ const HospitalRegistrationForm = () => {
           <TextField
             required
             type="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
             name="email"
             label="Email"
             variant="outlined"
@@ -82,8 +112,10 @@ const HospitalRegistrationForm = () => {
           <TextField
             required
             type="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
             name="password"
             label="Password"
             variant="outlined"
