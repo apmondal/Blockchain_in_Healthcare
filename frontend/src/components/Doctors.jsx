@@ -9,12 +9,12 @@ import ListComponent from './List';
 import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
 const listItems = [
-  { name: 'Shreejeeb Kesh1', id: 1, specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh2', id: 2, specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh3', id: 3, specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh5', id: 4, specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh6', id: 5, specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh7', id: 6, specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh1', id: '1', specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh2', id: '2', specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh3', id: '3', specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh5', id: '4', specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh6', id: '5', specification: 'lorem ipsum' },
+  { name: 'Shreejeeb Kesh7', id: '6', specification: 'lorem ipsum' },
 ];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

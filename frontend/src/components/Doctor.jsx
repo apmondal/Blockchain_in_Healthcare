@@ -8,7 +8,7 @@ const Doctor = () => {
     const doctorList = JSON.parse(localStorage.getItem('doctorsList'));
 
     if (doctorList && doctorList.length) {
-      const DOCTOR = doctorList.find((d) => d && d.id === Number(id));
+      const DOCTOR = doctorList.find((d) => d && d.id === id);
       if (DOCTOR) setDoctor(DOCTOR);
       console.log(DOCTOR);
     }
