@@ -10,7 +10,18 @@ import {
 import { useContext } from 'react';
 import { HospitalContext } from '../context/HospitalsContext';
 import { Link, useNavigate } from 'react-router-dom';
-
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+const validationSchema = yup.object({
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
 const HospitalLogIn = () => {
   const { formData, handleChange, addHospital } = useContext(HospitalContext);
   const navigate = useNavigate();
@@ -19,6 +30,14 @@ const HospitalLogIn = () => {
 
     navigate('/hospital');
   };
+  const formik = useFormik({
+    initialValues: { ...formData },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      navigate('/hospital');
+    },
+  });
   return (
     <Box
       sx={{
@@ -44,24 +63,30 @@ const HospitalLogIn = () => {
             width: 400,
             minHeight: 300,
           }}
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
         >
           <Typography variant="h5" fontWeight="bold" textAlign="center">
             Enter hospital details to log in{' '}
           </Typography>
           <TextField
+            required
             type="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
             name="email"
             label="Email"
             variant="outlined"
             fullWidth
           />
           <TextField
+            required
             type="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
             name="password"
             label="Password"
             variant="outlined"
