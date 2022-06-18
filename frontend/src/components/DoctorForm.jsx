@@ -11,17 +11,16 @@ import * as yup from 'yup';
 const validationSchema = yup.object({
   name: yup.string('Enter your Name').required('Name is required'),
   id: yup.string('Enter your id').required('id is required'),
-  specification: yup
-    .string('Enter your specification')
-    .required('specification is required'),
+  specialization: yup
+    .string('Enter your specialization')
+    .required('Specialization is required'),
   address: yup.string('Enter your address').required('address is required'),
-  email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
+  hospitalIds: yup
+    .string('Enter your Hospital ids.')
+    .required('Hospital ids is required'),
 });
 const DoctorForm = () => {
-  const { formData, handleChange, addDoctor } = useContext(DoctorContext);
+  const { formData, addDoctor } = useContext(DoctorContext);
   const formik = useFormik({
     initialValues: { ...formData },
     validationSchema: validationSchema,
@@ -100,32 +99,21 @@ const DoctorForm = () => {
             <TextField
               required
               type="text"
-              value={formik.values.specification}
+              value={formik.values.specialization}
               onChange={formik.handleChange}
               error={
-                formik.touched.specification &&
-                Boolean(formik.errors.specification)
+                formik.touched.specialization &&
+                Boolean(formik.errors.specialization)
               }
               helperText={
-                formik.touched.specification && formik.errors.specification
+                formik.touched.specialization && formik.errors.specialization
               }
-              name="specification"
-              label="Specification"
+              name="specialization"
+              label="Specialization"
               variant="outlined"
               fullWidth
             />
-            <TextField
-              required
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-              name="email"
-              label="Email"
-              variant="outlined"
-              fullWidth
-            />
+
             <TextField
               required
               type="text"
@@ -138,7 +126,22 @@ const DoctorForm = () => {
               variant="outlined"
               fullWidth
             />
-
+            <TextField
+              required
+              type="text"
+              value={formik.values.hospitalIds}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.hospitalIds && Boolean(formik.errors.hospitalIds)
+              }
+              helperText={
+                formik.touched.hospitalIds && formik.errors.hospitalIds
+              }
+              name="hospitalIds"
+              label="Hospital ids"
+              variant="outlined"
+              fullWidth
+            />
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Submit
             </Button>

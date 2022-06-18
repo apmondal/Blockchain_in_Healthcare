@@ -6,10 +6,10 @@ export const DoctorProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     name: '',
     id: '',
-    specification: '',
-    email: '',
+    specialization: '',
     phoneNumber: '',
     address: '',
+    hospitalIds: '',
   });
 
   const [doctorsList, setDoctorsList] = useState(null);

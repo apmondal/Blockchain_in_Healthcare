@@ -23,6 +23,7 @@ const validationSchema = yup.object({
     .string('Enter your password')
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
+  specializedWards: yup.string('Enter specialized wards').required('required'),
 });
 const HospitalRegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -97,6 +98,23 @@ const HospitalRegistrationForm = () => {
             variant="outlined"
             fullWidth
           />
+          <TextField
+            required
+            value={formik.values.specializedWards}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.specializedWards &&
+              Boolean(formik.errors.specializedWards)
+            }
+            helperText={
+              formik.touched.specializedWards && formik.errors.specializedWards
+            }
+            name="specializedWards"
+            label="Specialized wards"
+            variant="outlined"
+            fullWidth
+          />
+
           <TextField
             required
             type="email"

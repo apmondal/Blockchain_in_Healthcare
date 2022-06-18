@@ -17,17 +17,13 @@ export default function ListComponent() {
 
   React.useEffect(() => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
+    console.log('list', list);
     if (searchKeyWord === '') handleDoctorList(list);
     else {
       if (list) {
-        const filteredList = list.filter(({ name, specification }) => {
-          return searchKeyWord.split('').reduce((prev, char) => {
-            return (
-              prev ||
-              name.indexOf(char) !== -1 ||
-              specification.indexOf(char) !== -1
-            );
-          }, false);
+        const filteredList = list.filter(({ name, specialization }) => {
+          console.log(name, name.match(/searchKeyWord/gi));
+          return name.match(/searchKeyWord/) !== 'null';
         });
 
         if (filteredList && filteredList.length) {
@@ -64,7 +60,7 @@ export default function ListComponent() {
                 },
               }}
               component="div"
-              onClick={() => navigate(`/hospital/doctor/${listItem.id}`)}
+              onClick={() => navigate(`/hospital/patient/${listItem.id}`)}
             >
               <ListItem alignItems="flex-start">
                 <ListItemAvatar>

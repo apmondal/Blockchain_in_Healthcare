@@ -15,7 +15,7 @@ contract Patient {
         uint256 phone_no;
         string email_id;
         uint256 date;
-        uint256 doctor_id; // array
+        uint256[] doctor_ids;
         uint256 hospital_id;
     }
     patient p;

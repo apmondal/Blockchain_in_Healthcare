@@ -8,9 +8,14 @@ contract Hospitals {
 
     struct Hospital {
         uint256 id;
-        address hospitalAddress;
+        address contractAddress;
         string name;
+        string hospitalAddress;
+        string email;
+        string password;
         uint256 timestamp;
+        // doctors
+        // patients
     }
 
     Hospital[] hospitals;
@@ -18,10 +23,25 @@ contract Hospitals {
 
     // mapping(address => mapping(address => Doctor)) doctorsMap;
 
-    function addToBlockChain(uint256 id, string memory name) public {
+    function addToBlockChain(
+        uint256 id,
+        string memory name,
+        string memory hospitalAddress,
+        string memory email,
+        string memory password
+    ) public {
         numOfHospitals += 1;
-        hospitalsMap[id] = Hospital(id, msg.sender, name, block.timestamp);
-        hospitals.push(Hospital(id, msg.sender, name, block.timestamp));
+        Hospital memory h = Hospital(
+            id,
+            msg.sender,
+            name,
+            hospitalAddress,
+            email,
+            password,
+            block.timestamp
+        );
+        hospitalsMap[id] = h;
+        hospitals.push(h);
         emit Registered(msg.sender, name);
     }
 

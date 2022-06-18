@@ -4,12 +4,14 @@ export const PatientContext = React.createContext();
 
 export const PatientProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    name: '',
     id: '',
-    password: '',
-    email: '',
+    name: '',
+    age: '',
+    gender: '',
+    address: '',
+    phone: '',
   });
-
+  const [patientList, setPatientList] = useState(null);
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -18,7 +20,13 @@ export const PatientProvider = ({ children }) => {
   };
 
   const addPatient = async () => {
-    alert(formData);
+    const patientList = JSON.parse(localStorage.getItem('patientsList'));
+    if (!patientList) {
+      localStorage.setItem('patientsList', JSON.stringify([formData]));
+    }
+
+    patientList.push(formData);
+    localStorage.setItem('patientsList', JSON.stringify(patientList));
   };
 
   return (
@@ -27,6 +35,7 @@ export const PatientProvider = ({ children }) => {
         formData,
         handleChange,
         addPatient,
+        setFormData,
       }}
     >
       {children}

@@ -10,12 +10,49 @@ import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
 import BackButton from './BackButton';
 const listItems = [
-  { name: 'Shreejeeb Kesh1', id: '1', specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh2', id: '2', specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh3', id: '3', specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh5', id: '4', specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh6', id: '5', specification: 'lorem ipsum' },
-  { name: 'Shreejeeb Kesh7', id: '6', specification: 'lorem ipsum' },
+  { name: 'Dr.Shreejeeb Kesh', id: '1', specialization: 'ENT' },
+  { name: 'Dr.Rohan Sadhukhan', id: '2', specialization: 'Cardiologist' },
+  { name: 'Dr.Apurba Mondal', id: '3', specialization: 'Dentist' },
+  { name: 'Dr.Souvik Chakrabarty', id: '4', specialization: 'Neurologist' },
+];
+
+const listItems1 = [
+  {
+    name: 'Shreejeeb Kesh',
+    id: 'P1',
+    age: '23',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Rohan Sadhukhan',
+    id: 'P2',
+    age: '22',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Apurba Mondal',
+    id: 'P3',
+    age: '22',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Souvik Chakrabarty',
+    id: 'P4',
+    age: '24',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
 ];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,7 +104,7 @@ const Doctors = () => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
 
     if (!list) {
-      localStorage.setItem('doctorsList', JSON.stringify(listItems));
+      localStorage.setItem('doctorsList', JSON.stringify(listItems1));
     }
   }, []);
   return (

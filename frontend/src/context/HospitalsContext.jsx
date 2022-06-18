@@ -14,7 +14,7 @@ const getEthereumContract = () => {
     contractAbi,
     signer
   );
-  console.log({ provider, signer, hospitalContract });
+  // console.log({ provider, signer, hospitalContract });
   return hospitalContract;
 };
 
@@ -25,6 +25,7 @@ export const HospitalsProvider = ({ children }) => {
     id: '',
     password: '',
     email: '',
+    specializedWards: '',
   });
 
   const handleChange = (e) => {
@@ -41,7 +42,7 @@ export const HospitalsProvider = ({ children }) => {
       if (accounts.length) {
         setConnectedAccount(accounts[0]);
       }
-      console.log(accounts);
+      // console.log(accounts);
     } catch (error) {
       console.error(error);
       throw new Error('No ethereum object');
