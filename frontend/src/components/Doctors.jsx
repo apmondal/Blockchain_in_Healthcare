@@ -1,6 +1,6 @@
 import { Button, Divider, Typography } from '@mui/material';
 import { Box, Paper } from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -10,10 +10,34 @@ import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
 import BackButton from './BackButton';
 const listItems = [
-  { name: 'Dr.Shreejeeb Kesh', id: '1', specialization: 'ENT' },
-  { name: 'Dr.Rohan Sadhukhan', id: '2', specialization: 'Cardiologist' },
-  { name: 'Dr.Apurba Mondal', id: '3', specialization: 'Dentist' },
-  { name: 'Dr.Souvik Chakrabarty', id: '4', specialization: 'Neurologist' },
+  {
+    name: 'Dr.Shreejeeb Kesh',
+    id: 'D1',
+    specialization: 'ENT',
+    address: 'Howrah,WB',
+    phone: '8617868794',
+  },
+  {
+    name: 'Dr.Rohan Sadhukhan',
+    id: 'D2',
+    specialization: 'Cardiologist',
+    address: 'Howrah,WB',
+    phone: '8617868794',
+  },
+  {
+    name: 'Dr.Apurba Mondal',
+    id: 'D3',
+    specialization: 'Dentist',
+    address: 'Howrah,WB',
+    phone: '8617868794',
+  },
+  {
+    name: 'Dr.Souvik Chakrabarty',
+    id: 'D4',
+    specialization: 'Neurologist',
+    address: 'Howrah,WB',
+    phone: '8617868794',
+  },
 ];
 
 const listItems1 = [
@@ -104,7 +128,7 @@ const Doctors = () => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
 
     if (!list) {
-      localStorage.setItem('doctorsList', JSON.stringify(listItems1));
+      localStorage.setItem('doctorsList', JSON.stringify(listItems));
     }
   }, []);
   return (

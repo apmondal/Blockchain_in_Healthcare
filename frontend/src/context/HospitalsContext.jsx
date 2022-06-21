@@ -14,7 +14,7 @@ const getEthereumContract = () => {
     contractAbi,
     signer
   );
-  // console.log({ provider, signer, hospitalContract });
+  console.log({ provider, signer, hospitalContract });
   return hospitalContract;
 };
 
@@ -64,15 +64,16 @@ export const HospitalsProvider = ({ children }) => {
   };
 
   const addHospital = (values) => {
-    // try {
-    //   if (!ethereum) alert('Please Install Metamask');
-    //   const { name, id } = formData;
-    //   const hospitalContract = getEthereumContract();
-    //   hospitalContract.functions.addToBlockChain(id, name);
-    // } catch (error) {
-    //   console.error(error);
-    //   throw new Error('No ethereum object');
-    // }
+    try {
+      if (!ethereum) alert('Please Install Metamask');
+      const { name, id } = formData;
+      const hospitalContract = getEthereumContract();
+      console.log(hospitalContract);
+      hospitalContract.addPatient(id, name);
+    } catch (error) {
+      console.error(error);
+      throw new Error('No ethereum object');
+    }
     localStorage.setItem('hospital', JSON.stringify(values));
   };
   useEffect(() => {

@@ -10,6 +10,7 @@ export const PatientProvider = ({ children }) => {
     gender: '',
     address: '',
     phone: '',
+    recordValue: '',
   });
   const [patientList, setPatientList] = useState(null);
   const handleChange = (e) => {

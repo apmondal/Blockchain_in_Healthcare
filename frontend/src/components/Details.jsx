@@ -1,7 +1,13 @@
 import { Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import BackButton from './BackButton';
+
+const formatAttributes = (attr) => {
+  const letters = attr.split('');
+  letters[0] = letters[0].toUpperCase();
+  return letters.join('');
+};
 
 const Details = ({ details }) => {
   if (!details) {
@@ -17,26 +23,30 @@ const Details = ({ details }) => {
     <>
       <BackButton />
       <Paper sx={{ mx: 20, mt: 10, padding: 4 }}>
-        {Object.keys(details).map((attr) => {
-          if (attr && attr !== 'password' && details[attr].length)
-            return (
-              <Box key={attr} sx={{ display: 'flex', width: '100%' }}>
-                {attr === 'name' ? (
-                  <Typography variant="h3" textAlign="center" color="green">
-                    {details[attr]}
-                  </Typography>
-                ) : (
-                  <>
-                    <Typography variant="h6" fontWeight="bold">
-                      {attr}:
-                    </Typography>{' '}
-                    <Typography variant="h6">{details[attr]}</Typography>
-                  </>
-                )}
-              </Box>
-            );
-          return null;
-        })}
+        <div>
+          {Object.keys(details).map((attr) => {
+            if (attr && attr !== 'password' && details[attr].length)
+              return (
+                <Box key={attr} sx={{ display: 'flex', width: '100%' }}>
+                  {attr === 'name' ? (
+                    <Typography variant="h3" textAlign="center" color="green">
+                      {details[attr]}
+                    </Typography>
+                  ) : (
+                    <>
+                      <Typography variant="h6" fontWeight="bold">
+                        {formatAttributes(attr)}:
+                      </Typography>
+                      <Typography variant="h6">
+                        &nbsp;{details[attr]}
+                      </Typography>
+                    </>
+                  )}
+                </Box>
+              );
+            return null;
+          })}
+        </div>
       </Paper>
     </>
   );

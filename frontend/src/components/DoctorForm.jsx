@@ -142,6 +142,22 @@ const DoctorForm = () => {
               variant="outlined"
               fullWidth
             />
+            <TextField
+              required
+              type="text"
+              value={formik.values.hospitalIds}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.hospitalIds && Boolean(formik.errors.hospitalIds)
+              }
+              helperText={
+                formik.touched.hospitalIds && formik.errors.hospitalIds
+              }
+              name="hospitalIds"
+              label="Hospital ids"
+              variant="outlined"
+              fullWidth
+            />
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Submit
             </Button>

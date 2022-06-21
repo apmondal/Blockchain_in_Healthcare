@@ -60,7 +60,7 @@ export default function ListComponent() {
                 },
               }}
               component="div"
-              onClick={() => navigate(`/hospital/patient/${listItem.id}`)}
+              onClick={() => navigate(`/hospital/doctor/${listItem.id}`)}
             >
               <ListItem alignItems="flex-start">
                 <ListItemAvatar>
@@ -79,7 +79,7 @@ export default function ListComponent() {
                         variant="body2"
                         color="text.primary"
                       >
-                        {listItem.specification}
+                        {listItem.specialization}
                       </Typography>
                     </React.Fragment>
                   }
