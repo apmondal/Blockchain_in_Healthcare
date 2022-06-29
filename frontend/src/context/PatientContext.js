@@ -13,6 +13,9 @@ export const PatientProvider = ({ children }) => {
     recordValue: '',
   });
   const [patientList, setPatientList] = useState(null);
+  const handlePatientList = (list) => {
+    setPatientList(list);
+  };
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -37,6 +40,8 @@ export const PatientProvider = ({ children }) => {
         handleChange,
         addPatient,
         setFormData,
+        patientList,
+        handlePatientList,
       }}
     >
       {children}

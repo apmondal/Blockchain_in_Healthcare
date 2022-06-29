@@ -1,4 +1,4 @@
-import contractConfig from './Patient.json';
+import contractConfig from './Hospitals.json';
 
 export const contractAbi = contractConfig.abi;
-export const contractAddress = '0x346D4949334B9a257dAe0e6479aA4a789B90D540';
+export const contractAddress = '0xe89431A87661b704FA4Dbbd65B386079CC795F63';

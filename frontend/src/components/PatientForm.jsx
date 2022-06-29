@@ -46,11 +46,7 @@ const PatientForm = ({ formType }) => {
     setRecordValue(event.target.value);
   };
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    goToPatientPage();
-  };
   const goToPatientPage = () => {
     navigate('/hospital/patients');
   };
@@ -66,7 +62,7 @@ const PatientForm = ({ formType }) => {
   });
 
   useEffect(() => {
-    const patientList = JSON.parse(localStorage.getItem('doctorsList'));
+    const patientList = JSON.parse(localStorage.getItem('patientList'));
     if (patientList && patientList.length) {
       const PATIENT = patientList.find((d) => d && d.id === id);
       if (PATIENT) {
@@ -201,6 +197,7 @@ const PatientForm = ({ formType }) => {
                   value={recordValue}
                   label="Select"
                   onChange={handleChange}
+                  sx={{ width: '30%' }}
                 >
                   {recordNames.map((recordName) => (
                     <MenuItem value={recordName} key={recordName}>

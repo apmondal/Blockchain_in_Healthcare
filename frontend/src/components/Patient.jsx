@@ -8,7 +8,7 @@ const Patient = () => {
   const navigate = useNavigate();
   const [patient, setPatient] = useState(null);
   useEffect(() => {
-    const patientList = JSON.parse(localStorage.getItem('doctorsList'));
+    const patientList = JSON.parse(localStorage.getItem('patientList'));
     console.log(patientList, id);
     if (patientList && patientList.length) {
       const PATIENT = patientList.find((d) => d && d.id === id);

@@ -40,44 +40,6 @@ const listItems = [
   },
 ];
 
-const listItems1 = [
-  {
-    name: 'Shreejeeb Kesh',
-    id: 'P1',
-    age: '23',
-    gender: 'M',
-    address: 'JGEC',
-    phone: '8617868793',
-    BloodGroup: 'AB+',
-  },
-  {
-    name: 'Rohan Sadhukhan',
-    id: 'P2',
-    age: '22',
-    gender: 'M',
-    address: 'JGEC',
-    phone: '8617868793',
-    BloodGroup: 'AB+',
-  },
-  {
-    name: 'Apurba Mondal',
-    id: 'P3',
-    age: '22',
-    gender: 'M',
-    address: 'JGEC',
-    phone: '8617868793',
-    BloodGroup: 'AB+',
-  },
-  {
-    name: 'Souvik Chakrabarty',
-    id: 'P4',
-    age: '24',
-    gender: 'M',
-    address: 'JGEC',
-    phone: '8617868793',
-    BloodGroup: 'AB+',
-  },
-];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -123,12 +85,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Doctors = () => {
   const navigate = useNavigate();
 
-  const { searchKeyWord, handleSearchKeyWord } = useContext(DoctorContext);
+  const { doctorsList, handleDoctorList, searchKeyWord, handleSearchKeyWord } =
+    useContext(DoctorContext);
   useEffect(() => {
     const list = JSON.parse(localStorage.getItem('doctorsList'));
 
     if (!list) {
       localStorage.setItem('doctorsList', JSON.stringify(listItems));
+      handleDoctorList(listItems);
+    } else {
+      handleDoctorList(list);
     }
   }, []);
   return (
@@ -180,7 +146,7 @@ const Doctors = () => {
           </Search>
         </Box>
         <Divider />
-        <ListComponent />
+        <ListComponent list={doctorsList} listType="doctor" />
       </Box>
     </div>
   );

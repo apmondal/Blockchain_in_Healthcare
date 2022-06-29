@@ -68,7 +68,6 @@ export const HospitalsProvider = ({ children }) => {
       if (!ethereum) alert('Please Install Metamask');
       const { name, id } = formData;
       const hospitalContract = getEthereumContract();
-      console.log(hospitalContract);
       hospitalContract.addPatient(id, name);
     } catch (error) {
       console.error(error);
@@ -78,6 +77,7 @@ export const HospitalsProvider = ({ children }) => {
   };
   useEffect(() => {
     checkIfWalletIsConnected();
+    getEthereumContract();
   }, []);
   return (
     <HospitalContext.Provider

@@ -9,7 +9,45 @@ import ListComponent from './List';
 import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
 import BackButton from './BackButton';
-
+import { PatientContext } from '../context/PatientContext';
+const listItems = [
+  {
+    name: 'Shreejeeb Kesh',
+    id: 'P1',
+    age: '23',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Rohan Sadhukhan',
+    id: 'P2',
+    age: '22',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Apurba Mondal',
+    id: 'P3',
+    age: '22',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+  {
+    name: 'Souvik Chakrabarty',
+    id: 'P4',
+    age: '24',
+    gender: 'M',
+    address: 'JGEC',
+    phone: '8617868793',
+    BloodGroup: 'AB+',
+  },
+];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -55,8 +93,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Patients = () => {
   const navigate = useNavigate();
 
-  const { searchKeyWord, handleSearchKeyWord } = useContext(DoctorContext);
+  const { patientList, handlePatientList } = useContext(PatientContext);
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('patientList'));
 
+    if (!list) {
+      localStorage.setItem('patientList', JSON.stringify(listItems));
+      handlePatientList(listItems);
+    } else {
+      handlePatientList(list);
+    }
+  }, []);
   return (
     <div>
       <BackButton />
@@ -92,21 +139,9 @@ const Patients = () => {
           }}
         >
           <Typography variant="h5">Patients</Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              type="text"
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              value={searchKeyWord}
-              onChange={handleSearchKeyWord}
-            />
-          </Search>
         </Box>
         <Divider />
-        <ListComponent />
+        <ListComponent list={patientList} listType="patient" />
       </Box>
     </div>
   );

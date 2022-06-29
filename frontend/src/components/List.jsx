@@ -10,29 +10,9 @@ import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from '../context/DoctorContext';
 
-export default function ListComponent() {
-  const { doctorsList, handleDoctorList, searchKeyWord } =
-    React.useContext(DoctorContext);
+export default function ListComponent({ list, listType }) {
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    const list = JSON.parse(localStorage.getItem('doctorsList'));
-    console.log('list', list);
-    if (searchKeyWord === '') handleDoctorList(list);
-    else {
-      if (list) {
-        const filteredList = list.filter(({ name, specialization }) => {
-          console.log(name, name.match(/searchKeyWord/gi));
-          return name.match(/searchKeyWord/) !== 'null';
-        });
-
-        if (filteredList && filteredList.length) {
-          handleDoctorList(filteredList);
-        }
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchKeyWord]);
   return (
     <List
       sx={{
@@ -43,9 +23,9 @@ export default function ListComponent() {
         overflowY: 'scroll',
       }}
     >
-      {doctorsList &&
-        doctorsList.length &&
-        doctorsList.map((listItem, index) => {
+      {list &&
+        list.length &&
+        list.map((listItem, index) => {
           if (!listItem) return null;
           return (
             <Box
@@ -60,7 +40,7 @@ export default function ListComponent() {
                 },
               }}
               component="div"
-              onClick={() => navigate(`/hospital/doctor/${listItem.id}`)}
+              onClick={() => navigate(`/hospital/${listType}/${listItem.id}`)}
             >
               <ListItem alignItems="flex-start">
                 <ListItemAvatar>
@@ -85,7 +65,7 @@ export default function ListComponent() {
                   }
                 />
               </ListItem>
-              {index !== doctorsList.length - 1 && (
+              {index !== list.length - 1 && (
                 <Divider variant="inset" component="li" />
               )}
             </Box>
